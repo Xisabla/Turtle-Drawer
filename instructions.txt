@@ -1,0 +1,28 @@
+setposition 250 250
+
+block rotating_rectangle
+    repeat 45
+        forward 200
+        rotate 89
+        forward 100
+        rotate 89
+
+repeat 4
+    call rotating_rectangle
+    forward 100
+
+setdefault
+setposition 650 250
+
+repeat 4
+    setcolor 0 255 255
+    call rotating_rectangle
+    forward 100
+
+setdefault
+setposition 1050 250
+
+repeat 4
+    setcolorhex 008080
+    call rotating_rectangle
+    forward 100

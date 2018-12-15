@@ -1,0 +1,8 @@
+# Left means to turn positively in the trigonometric sens
+
+setposition 0 0
+repeat 10
+    forward 100
+    right 90
+    forward 100
+    left 90

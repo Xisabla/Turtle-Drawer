@@ -1,0 +1,6 @@
+# Basic square drawing
+
+setposition 300 300
+repeat 4
+    forward 100
+    rotate 90

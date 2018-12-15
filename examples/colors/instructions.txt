@@ -1,0 +1,13 @@
+forward 100
+
+setcolor 255 0 0
+forward 100
+
+setcolor 0 255 0
+forward 100
+
+setcolor 0 0 255
+forward 100
+
+setcolorhex 008B8B
+forward 100

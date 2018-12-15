@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Documentation: Turtle Drawing</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs2015.css */ /* * Visual Studio 2015 dark style * Author: Nicolas LLOBERA <nllobera@gmail.com> */ .hljs-keyword, .hljs-literal, .hljs-symbol, .hljs-name { color: #569CD6; } .hljs-link { color: #569CD6; text-decoration: underline; } .hljs-built_in, .hljs-type { color: #4EC9B0; } .hljs-number, .hljs-class { color: #B8D7A3; } .hljs-string, .hljs-meta-string { color: #D69D85; } .hljs-regexp, .hljs-template-tag { color: #9A5334; } .hljs-subst, .hljs-function, .hljs-title, .hljs-params, .hljs-formula { color: #DCDCDC; } .hljs-comment, .hljs-quote { color: #57A64A; font-style: italic; } .hljs-doctag { color: #608B4E; } .hljs-meta, .hljs-meta-keyword, .hljs-tag { color: #9B9B9B; } .hljs-variable, .hljs-template-variable { color: #BD63C5; } .hljs-attr, .hljs-attribute, .hljs-builtin-name { color: #9CDCFE; } .hljs-section { color: gold; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; } /*.hljs-code { font-family:'Monospace'; }*/ .hljs-bullet, .hljs-selector-tag, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo { color: #D7BA7D; } .hljs-addition { background-color: #144212; display: inline-block; width: 100%; } .hljs-deletion { background-color: #600; display: inline-block; width: 100%; } /* From https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs.css */ /* Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name> */ .vscode-light .hljs-function, .vscode-light .hljs-params { color: inherit; } .vscode-light .hljs-comment, .vscode-light .hljs-quote, .vscode-light .hljs-variable { color: #008000; } .vscode-light .hljs-keyword, .vscode-light .hljs-selector-tag, .vscode-light .hljs-built_in, .vscode-light .hljs-name, .vscode-light .hljs-tag { color: #00f; } .vscode-light .hljs-string, .vscode-light .hljs-title, .vscode-light .hljs-section, .vscode-light .hljs-attribute, .vscode-light .hljs-literal, .vscode-light .hljs-template-tag, .vscode-light .hljs-template-variable, .vscode-light .hljs-type, .vscode-light .hljs-addition { color: #a31515; } .vscode-light .hljs-deletion, .vscode-light .hljs-selector-attr, .vscode-light .hljs-selector-pseudo, .vscode-light .hljs-meta { color: #2b91af; } .vscode-light .hljs-doctag { color: #808080; } .vscode-light .hljs-attr { color: #f00; } .vscode-light .hljs-symbol, .vscode-light .hljs-bullet, .vscode-light .hljs-link { color: #00b0e8; } .vscode-light .hljs-emphasis { font-style: italic; } .vscode-light .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <h1 id="documentation-turtle-drawing">Documentation: Turtle Drawing</h1>
+<ul>
+<li><a href="#documentation-turtle-drawing">Documentation: Turtle Drawing</a>
+<ul>
+<li><a href="#setters-instructions">Setters instructions</a>
+<ul>
+<li><a href="#setdefault"><code>setdefault</code></a></li>
+<li><a href="#setpen-onoff"><code>setpen &lt;on/off&gt;</code></a></li>
+<li><a href="#setx-x"><code>setx &lt;x&gt;</code></a></li>
+<li><a href="#sety-y"><code>sety &lt;y&gt;</code></a></li>
+<li><a href="#setposition-x-y"><code>setposition &lt;x&gt; &lt;y&gt;</code></a></li>
+<li><a href="#setorientation-angle"><code>setorientation &lt;angle&gt;</code></a></li>
+<li><a href="#setcolor-r-g-b"><code>setcolor &lt;r&gt; &lt;g&gt; &lt;b&gt;</code></a></li>
+<li><a href="#setcolorhex-hex"><code>setcolorhex &lt;hex&gt;</code></a></li>
+<li><a href="#setthickness-thickness"><code>setthickness &lt;thickness&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#drawmove-instructions">Draw/move instructions</a>
+<ul>
+<li><a href="#rotate-angle"><code>rotate &lt;angle&gt;</code></a></li>
+<li><a href="#forward-distance"><code>forward &lt;distance&gt;</code></a></li>
+<li><a href="#backward-distance"><code>backward &lt;distance&gt;</code></a></li>
+<li><a href="#left-angle"><code>left &lt;angle&gt;</code></a></li>
+<li><a href="#right-angle"><code>right &lt;angle&gt;</code></a></li>
+<li><a href="#arc-angle-radius"><code>arc &lt;angle&gt; &lt;radius&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#blocks">Blocks</a>
+<ul>
+<li><a href="#repeat-times"><code>repeat &lt;times&gt;</code></a></li>
+<li><a href="#block-name"><code>block &lt;name&gt;</code></a></li>
+<li><a href="#call-name"><code>call &lt;name&gt;</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="setters-instructions">Setters instructions</h2>
+<p>Those instructions allow the user to define the curser values</p>
+<h3 id="setdefault"><code>setdefault</code></h3>
+<p><code>setdefault</code> reset all cursor values to default, it means:</p>
+<ul>
+<li>the pen set on &quot;on&quot;</li>
+<li>the position (0, 0)</li>
+<li>the orientation 0°</li>
+<li>the color: white</li>
+<li>the thickness set on 1</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setcolor 255 10 10
+forward 200
+
+setdefault
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setpen-onoff"><code>setpen &lt;on/off&gt;</code></h3>
+<p><code>setpen on</code> makes the cursor draw will moving</p>
+<p><code>setpen off</code> denies the cursor from drawing will moving</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setpen off
+forward 100
+setpen on
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setx-x"><code>setx &lt;x&gt;</code></h3>
+<p><code>setx</code> will redifine the x coordonate value of the cursor</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setx 200
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="sety-y"><code>sety &lt;y&gt;</code></h3>
+<p><code>sety</code> will redifine the y coordonate value of the cursor</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>sety 200
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setposition-x-y"><code>setposition &lt;x&gt; &lt;y&gt;</code></h3>
+<p><code>setposition</code> is a mix betwenn <a href="#setx-x"><code>setx</code></a> and <a href="#sety-y"><code>sety</code></a>, it will redifine the x and y coordonate values of the cursor</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setposition 200 200
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setorientation-angle"><code>setorientation &lt;angle&gt;</code></h3>
+<p><code>setorientation</code> will redifine the current cursor orientation</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setorientation 45
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setcolor-r-g-b"><code>setcolor &lt;r&gt; &lt;g&gt; &lt;b&gt;</code></h3>
+<p><code>setcolor</code> will redifine the cursor color and tus the drawing shapes color</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setcolor 255 14 14
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setcolorhex-hex"><code>setcolorhex &lt;hex&gt;</code></h3>
+<p><code>setcolorhex</code> will do the same thing as <a href="#setcolor-r-g-b"><code>setcolor</code></a> but with the hexa value of the color instead of the rgb values.</p>
+<p><strong>Be careful</strong>, the letters of the hexa value have to be in <strong>capital letter</strong></p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setcolorhex FF0000
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="setthickness-thickness"><code>setthickness &lt;thickness&gt;</code></h3>
+<p><code>setthickness</code> will redifine the thickness of every lines drawed by the cursor</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setthickness 5
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h2 id="drawmove-instructions">Draw/move instructions</h2>
+<p>Those instructions allow the user to make the cursor move and thus draw is the pen status is &quot;on&quot;</p>
+<h3 id="rotate-angle"><code>rotate &lt;angle&gt;</code></h3>
+<p><code>rotate</code> instruction allow the cursor to inscrease his rotation to the defined angle</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>forward 100
+rotate 95
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="forward-distance"><code>forward &lt;distance&gt;</code></h3>
+<p><code>forward</code> allow the cursor to go in his direction for the specified distance</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="backward-distance"><code>backward &lt;distance&gt;</code></h3>
+<p><code>backward</code> is the same as <a href="#forward-distance"><code>forward</code></a>, but the cursor will go in the opposite direction than his orientation</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>forward 100
+rotate 90
+forward 100
+rotate 90
+backward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="left-angle"><code>left &lt;angle&gt;</code></h3>
+<p><code>left</code> is the same as <a href="#rotate-angle"><code>rotate</code></a>, but will take the opposite value of the absolute value of the angle</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>setposition 200 200
+forward 100
+left 100
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="right-angle"><code>right &lt;angle&gt;</code></h3>
+<p><code>right</code> is like <a href="#left-angle"><code>left</code></a>, but il will only take the absolute value of the angle</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>forward 100
+right 100
+forward 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="arc-angle-radius"><code>arc &lt;angle&gt; &lt;radius&gt;</code></h3>
+<p><code>arc</code> allow the cursor to draw an arc of a circle of the specified <code>radius</code></p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>forward 100
+arc 180 100
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h2 id="blocks">Blocks</h2>
+<p>The following methods will allow the user to create and run blocks of instructions or juste repeat instructions</p>
+<h3 id="repeat-times"><code>repeat &lt;times&gt;</code></h3>
+<p><code>repeat</code> will allow the user to repeat <code>times</code> times some instructions. All the tabulated instructions will be take. Line break also breaks the repeat block</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>repeat 4
+    forward 100
+    rotate 90
+forward 200
+</div></code></pre>
+<p>Is the same as :</p>
+<pre><code class="language-text"><div>repeat 4
+    forward 100
+    rotate 90
+
+    forward 200
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="block-name"><code>block &lt;name&gt;</code></h3>
+<p><code>block</code> allow the user to create block of instructions that can be called by the <a href="#call-name"><code>call</code></a> instruction</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>block square
+    repeat 4
+        forward 100
+        rotate 90
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+<h3 id="call-name"><code>call &lt;name&gt;</code></h3>
+<p>The <code>call</code> method allow the user to execute a defined <a href="#block-name"><code>block</code></a></p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-text"><div>block square
+    repeat 4
+        forward 100
+        rotate 90
+
+call square
+forward 100
+call square
+</div></code></pre>
+<p><a href="#documentation-turtle-drawing">↑ Back to top</a></p>
+
+    </body>
+    </html>

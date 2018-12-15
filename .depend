@@ -1,0 +1,3 @@
+Cursor.o: src/Cursor.cpp src/Cursor.h
+InputLine.o: src/InputLine.cpp src/InputLine.h src/StringExtra.h
+StringExtra.o: src/StringExtra.cpp src/StringExtra.h

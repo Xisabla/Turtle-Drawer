@@ -1,0 +1,6 @@
+setposition 0 300
+repeat 7
+    setpen on # It will draw
+    forward 100
+    setpen off # It won't draw, just move the position off the cursor
+    forward 100

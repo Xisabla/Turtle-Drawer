@@ -1,0 +1,11 @@
+setposition 650 0
+setthickness 1
+
+arc 360 10
+arc 360 20
+arc 360 50
+arc 360 100
+arc 360 200
+arc 360 300
+arc 360 500
+arc 360 1000

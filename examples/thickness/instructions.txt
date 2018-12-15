@@ -1,0 +1,42 @@
+# This is just an example of the use of setthickness
+
+setposition 300 300
+
+setthickness 1
+forward 50
+
+setthickness 2
+forward 50
+
+setthickness 3
+forward 50
+
+setthickness 4
+forward 50
+
+setthickness 5
+forward 50
+
+setthickness 6
+forward 50
+
+setthickness 7
+forward 50
+
+setthickness 8
+forward 50
+
+setthickness 9
+forward 50
+
+setthickness 10
+forward 50
+
+setthickness 20
+forward 100
+
+setthickness 30
+forward 150
+
+setthickness 50
+forward 200
