@@ -1,13 +1,6 @@
-forward 100
-
-setcolor 255 0 0
-forward 100
-
-setcolor 0 255 0
-forward 100
-
-setcolor 0 0 255
-forward 100
-
-setcolorhex 008B8B
-forward 100
+setposition 0 300
+repeat 7
+    setpen on
+    forward 100
+    setpen off
+    forward 100

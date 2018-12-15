@@ -1,0 +1,7 @@
+# Here is a comment line
+#   The line will be parsed as a comment,
+#   thus the program won't care about it
+#   Basically, it is a comment line.
+#   (the program won't care about empty lines too)
+
+say "Hello World" # comment on a line

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Documentation: (C++) Cursor</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 26px; line-height: 22px; word-wrap: break-word; } #code-csp-warning { position: fixed; top: 0; right: 0; color: white; margin: 16px; text-align: center; font-size: 12px; font-family: sans-serif; background-color:#444444; cursor: pointer; padding: 6px; box-shadow: 1px 1px 1px rgba(0,0,0,.25); } #code-csp-warning:hover { text-decoration: none; background-color:#007acc; box-shadow: 2px 2px 2px rgba(0,0,0,.25); } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-light.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-dark.showEditorSelection .code-line .code-line:hover:before { border-left: none; } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before { border-left: none; } img { max-width: 100%; max-height: 100%; } a { text-decoration: none; } a:hover { text-decoration: underline; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left-width: 5px; border-left-style: solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } pre:not(.hljs), pre.hljs code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ pre code { color: var(--vscode-editor-foreground); } .vscode-light pre { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark pre { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast pre { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } 
+</style>
+<style>
+/* https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs2015.css */ /* * Visual Studio 2015 dark style * Author: Nicolas LLOBERA <nllobera@gmail.com> */ .hljs-keyword, .hljs-literal, .hljs-symbol, .hljs-name { color: #569CD6; } .hljs-link { color: #569CD6; text-decoration: underline; } .hljs-built_in, .hljs-type { color: #4EC9B0; } .hljs-number, .hljs-class { color: #B8D7A3; } .hljs-string, .hljs-meta-string { color: #D69D85; } .hljs-regexp, .hljs-template-tag { color: #9A5334; } .hljs-subst, .hljs-function, .hljs-title, .hljs-params, .hljs-formula { color: #DCDCDC; } .hljs-comment, .hljs-quote { color: #57A64A; font-style: italic; } .hljs-doctag { color: #608B4E; } .hljs-meta, .hljs-meta-keyword, .hljs-tag { color: #9B9B9B; } .hljs-variable, .hljs-template-variable { color: #BD63C5; } .hljs-attr, .hljs-attribute, .hljs-builtin-name { color: #9CDCFE; } .hljs-section { color: gold; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; } /*.hljs-code { font-family:'Monospace'; }*/ .hljs-bullet, .hljs-selector-tag, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo { color: #D7BA7D; } .hljs-addition { background-color: #144212; display: inline-block; width: 100%; } .hljs-deletion { background-color: #600; display: inline-block; width: 100%; } /* From https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/vs.css */ /* Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name> */ .vscode-light .hljs-function, .vscode-light .hljs-params { color: inherit; } .vscode-light .hljs-comment, .vscode-light .hljs-quote, .vscode-light .hljs-variable { color: #008000; } .vscode-light .hljs-keyword, .vscode-light .hljs-selector-tag, .vscode-light .hljs-built_in, .vscode-light .hljs-name, .vscode-light .hljs-tag { color: #00f; } .vscode-light .hljs-string, .vscode-light .hljs-title, .vscode-light .hljs-section, .vscode-light .hljs-attribute, .vscode-light .hljs-literal, .vscode-light .hljs-template-tag, .vscode-light .hljs-template-variable, .vscode-light .hljs-type, .vscode-light .hljs-addition { color: #a31515; } .vscode-light .hljs-deletion, .vscode-light .hljs-selector-attr, .vscode-light .hljs-selector-pseudo, .vscode-light .hljs-meta { color: #2b91af; } .vscode-light .hljs-doctag { color: #808080; } .vscode-light .hljs-attr { color: #f00; } .vscode-light .hljs-symbol, .vscode-light .hljs-bullet, .vscode-light .hljs-link { color: #00b0e8; } .vscode-light .hljs-emphasis { font-style: italic; } .vscode-light .hljs-strong { font-weight: bold; }
+</style>
+<style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <h1 id="documentation-c-cursor">Documentation: (C++) Cursor</h1>
+<ul>
+<li><a href="#documentation-c-cursor">Documentation: (C++) Cursor</a>
+<ul>
+<li><a href="#public-cursorsfrenderwindow-window-float-x-float-y-float-orientation-int-thickness-sfcolor-color"><code>public Cursor(sf::RenderWindow *window, float x, float y, float orientation, int thickness, sf::Color color)</code></a></li>
+<li><a href="#public-bool-ispenon-const"><code>public bool isPenOn() const</code></a></li>
+<li><a href="#public-float-getx-const"><code>public float getX() const</code></a></li>
+<li><a href="#public-float-gety-const"><code>public float getY() const</code></a></li>
+<li><a href="#public-float-getorientation-const"><code>public float getOrientation() const</code></a></li>
+<li><a href="#public-int-getthickness-const"><code>public int getThickness() const</code></a></li>
+<li><a href="#public-sfcolor-getcolor-const"><code>public sf::Color getColor() const</code></a></li>
+<li><a href="#public-cursor-setpenstatusconst-bool-status"><code>public Cursor &amp;setPenStatus(const bool &amp;status)</code></a></li>
+<li><a href="#public-cursor-setpenon"><code>public Cursor &amp;setPenOn()</code></a></li>
+<li><a href="#public-cursor-setpenoff"><code>public Cursor &amp;setPenOff()</code></a></li>
+<li><a href="#public-cursor-setxconst-float-x"><code>public Cursor &amp;setX(const float &amp;x)</code></a></li>
+<li><a href="#public-cursor-setyconst-float-y"><code>public Cursor &amp;setY(const float &amp;y)</code></a></li>
+<li><a href="#public-cursor-setpositionconst-float-x-const-float-y"><code>public Cursor &amp;setPosition(const float &amp;x, const float &amp;y)</code></a></li>
+<li><a href="#public-cursor-setorientationconst-float-angle"><code>public Cursor &amp;setOrientation(const float &amp;angle)</code></a></li>
+<li><a href="#public-cursor-setcolorconst-sfcolor-color"><code>public Cursor &amp;setColor(const sf::Color &amp;color)</code></a></li>
+<li><a href="#public-cursor-setcolorconst-char-r-const-char-g-const-char-b"><code>public Cursor &amp;setColor(const char &amp;r, const char &amp;g, const char &amp;b)</code></a></li>
+<li><a href="#public-cursor-setcolorconst-stdstring-hex"><code>public Cursor &amp;setColor(const std::string &amp;hex)</code></a></li>
+<li><a href="#public-cursor-setthicknessconst-int-thickness"><code>public Cursor &amp;setThickness(const int &amp;thickness)</code></a></li>
+<li><a href="#public-cursor-rotateconst-float-rotation"><code>public Cursor &amp;rotate(const float &amp;rotation)</code></a></li>
+<li><a href="#public-cursor-forwardconst-float-distance"><code>public Cursor &amp;forward(const float &amp;distance)</code></a></li>
+<li><a href="#public-cursor-backwardconst-float-distance"><code>public Cursor &amp;backward(const float &amp;distance)</code></a></li>
+<li><a href="#public-cursor-rightconst-float-angle"><code>public Cursor &amp;right(const float &amp;angle)</code></a></li>
+<li><a href="#public-cursor-leftconst-float-angle"><code>public Cursor &amp;left(const float &amp;angle)</code></a></li>
+<li><a href="#public-cursor-arcconst-int-angle-const-int-radius"><code>public Cursor &amp;arc(const int &amp;angle, const int &amp;radius)</code></a></li>
+<li><a href="#public-void-render"><code>public void render()</code></a></li>
+<li><a href="#private-bool-penon"><code>private bool penOn</code></a></li>
+<li><a href="#private-float-x"><code>private float x</code></a></li>
+<li><a href="#private-float-y"><code>private float y</code></a></li>
+<li><a href="#private-float-orientation"><code>private float orientation</code></a></li>
+<li><a href="#private-int-thickness"><code>private int thickness</code></a></li>
+<li><a href="#private-sfcolor-color"><code>private sf::Color color</code></a></li>
+<li><a href="#private-sfrenderwindow-window"><code>private sf::RenderWindow* window</code></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="public-cursorsfrenderwindow-window-float-x-float-y-float-orientation-int-thickness-sfcolor-color"><code>public Cursor(sf::RenderWindow *window, float x, float y, float orientation, int thickness, sf::Color color)</code></h2>
+<p>This is basically the constructor, it returns an instance of <a href="#documentation-c-cursor"><code>Cursor</code></a></p>
+<ul>
+<li><code>window</code> is a pointer to the <em>SFML <code>RenderWindow</code></em> object in which will be draw the Cursor moves.</li>
+<li><code>x</code> is a float describing the base x position of the Cursor (<strong>default: 0</strong>).</li>
+<li><code>y</code> is a float describing the base y position of the Cursor (<strong>default: 0</strong>).</li>
+<li><code>orientation</code> is a float describing the base orientation of the Cursor (<strong>default: 0</strong>).</li>
+<li><code>thickness</code> is an int describing the base thickness of the Cursor (<strong>default: 1</strong>).</li>
+<li><code>color</code> is an <em>SFML <code>Color</code></em> object describing the base color of the Cursor (<strong>default: <code>sf::Color(255, 255, 255)</code></strong>).</li>
+</ul>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-bool-ispenon-const"><code>public bool isPenOn() const</code></h2>
+<p>Returns <code>true</code> if the pen status is on <em>true</em>, otherwise, returns <code>false</code>.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-float-getx-const"><code>public float getX() const</code></h2>
+<p>Returns the current x position of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-float-gety-const"><code>public float getY() const</code></h2>
+<p>Returns the current y position of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-float-getorientation-const"><code>public float getOrientation() const</code></h2>
+<p>Returns the current orientation's absolute angle of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-int-getthickness-const"><code>public int getThickness() const</code></h2>
+<p>Returns the current thickness of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-sfcolor-getcolor-const"><code>public sf::Color getColor() const</code></h2>
+<p>Returns the current color of the Cursor as an <em>SFML Color</em> object.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setpenstatusconst-bool-status"><code>public Cursor &amp;setPenStatus(const bool &amp;status)</code></h2>
+<p>Defines the Cursor pen status, if on <code>true</code>, the Cursor will draw while moving, elsewhere, on <code>false</code>, it won't draw but update it's position and orientation while moving.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setpenon"><code>public Cursor &amp;setPenOn()</code></h2>
+<p>Defines the Cursor pen status on true.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setpenoff"><code>public Cursor &amp;setPenOff()</code></h2>
+<p>Defines the Cursor pen status on false.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setxconst-float-x"><code>public Cursor &amp;setX(const float &amp;x)</code></h2>
+<p>Defines the x position of the Cursor, can be outside of the window.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setyconst-float-y"><code>public Cursor &amp;setY(const float &amp;y)</code></h2>
+<p>Defines the y position of the Cursor, can be outside of the window.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setpositionconst-float-x-const-float-y"><code>public Cursor &amp;setPosition(const float &amp;x, const float &amp;y)</code></h2>
+<p>Defines the x and y position of the Cursor, both can be outside of the window.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setorientationconst-float-angle"><code>public Cursor &amp;setOrientation(const float &amp;angle)</code></h2>
+<p>Defines the absolution orentation's angle of the Cursor. While moving the Cursor will forward following this angle orientation.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setcolorconst-sfcolor-color"><code>public Cursor &amp;setColor(const sf::Color &amp;color)</code></h2>
+<p>Defines the Cursor color using an <em>SFML Color</em> object.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setcolorconst-char-r-const-char-g-const-char-b"><code>public Cursor &amp;setColor(const char &amp;r, const char &amp;g, const char &amp;b)</code></h2>
+<p>Defines the Cursor color using an <em>rgb code</em>.</p>
+<p>Returns the instance of the Cursor.</p>
+<h2 id="public-cursor-setcolorconst-stdstring-hex"><code>public Cursor &amp;setColor(const std::string &amp;hex)</code></h2>
+<p>Defines the Cursor color using an <em>hexadecimal code</em> stored in a string. All letters must be in <strong>capital letters</strong>. By default if the string size is not 6, it sets the color to white.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-setthicknessconst-int-thickness"><code>public Cursor &amp;setThickness(const int &amp;thickness)</code></h2>
+<p>Defines the Cursor thickness. More the thickness is, thicker the lines drawed by the Cursor will be.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-rotateconst-float-rotation"><code>public Cursor &amp;rotate(const float &amp;rotation)</code></h2>
+<p><code>rotate</code> increments the orientation angle of the Cursor by the given angle.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-forwardconst-float-distance"><code>public Cursor &amp;forward(const float &amp;distance)</code></h2>
+<p><code>forward</code> make the Cursor go forward of the choosen distance, if the <em>penStatus</em> is on <code>true</code>, it will draw a line. In any case, it will update its x and y coordonates.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-backwardconst-float-distance"><code>public Cursor &amp;backward(const float &amp;distance)</code></h2>
+<p><code>backward</code> executes the <a href="#public-cursor-forwardconst-float-distance"><code>forward</code></a> method with the opposite value of the distance.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-rightconst-float-angle"><code>public Cursor &amp;right(const float &amp;angle)</code></h2>
+<p><code>right</code> method makes rotation with the absolute value of the given angle.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-leftconst-float-angle"><code>public Cursor &amp;left(const float &amp;angle)</code></h2>
+<p><code>left</code> method makes the same as <code>right</code> with the opposite of the absolute value of the given angle.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-cursor-arcconst-int-angle-const-int-radius"><code>public Cursor &amp;arc(const int &amp;angle, const int &amp;radius)</code></h2>
+<p><code>arc</code> draws a circle arc of the given radius, on the given angle. This draws one line and rotate to one degree repeated as the same number of times as the given angle.</p>
+<p>Returns the instance of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="public-void-render"><code>public void render()</code></h2>
+<p>Dispalys the window containing all the drawed shapes.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-bool-penon"><code>private bool penOn</code></h2>
+<p>Stores current Cursor pen status.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-float-x"><code>private float x</code></h2>
+<p>Stores current Cursor x positon.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-float-y"><code>private float y</code></h2>
+<p>Stores current Cursor y positon.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-float-orientation"><code>private float orientation</code></h2>
+<p>Stores currenct absolute orientation angle of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-int-thickness"><code>private int thickness</code></h2>
+<p>Stores the currect thickness of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-sfcolor-color"><code>private sf::Color color</code></h2>
+<p>Stores the current color of the Cursor.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+<h2 id="private-sfrenderwindow-window"><code>private sf::RenderWindow* window</code></h2>
+<p>Stores the adress of the window in which the Cursor will draw.</p>
+<p><a href="#documentation-c-cursor">↑ Back to top</a></p>
+
+    </body>
+    </html>

@@ -18,8 +18,6 @@ public:
 
     InputLine(std::string line, const int &l = 0);
 
-    // --------------- Getters --------------- //
-
     int getLine() const;
 
     int getOffset() const;
@@ -28,20 +26,14 @@ public:
 
     std::vector <std::string> getArguments() const;
 
-    // --------------- Methods --------------- //
-
     friend std::ostream &operator<<(std::ostream &os, const InputLine &input);
-
-    // --------------- Static Methods & vars --------------- //
 
     static std::vector <InputLine> parseFile(std::ifstream &input);
 
     static std::vector <std::string> errorHandler;
 
 private:
-    // --------------- Private Methods --------------- //
-
-    int parseOffset(std::string &line) const;
+    int parseOffset(std::string &line);
 
     std::string parseInstructionName(std::string &line);
 
@@ -49,7 +41,6 @@ private:
 
     int line;
     int offset;
-
     std::string instructionName;
     std::vector <std::string> arguments;
 };

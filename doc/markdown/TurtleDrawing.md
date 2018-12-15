@@ -1,27 +1,73 @@
 # Documentation: Turtle Drawing
 
 - [Documentation: Turtle Drawing](#documentation-turtle-drawing)
-  - [Setters instructions](#setters-instructions)
-    - [`setdefault`](#setdefault)
-    - [`setpen <on/off>`](#setpen-onoff)
-    - [`setx <x>`](#setx-x)
-    - [`sety <y>`](#sety-y)
-    - [`setposition <x> <y>`](#setposition-x-y)
-    - [`setorientation <angle>`](#setorientation-angle)
-    - [`setcolor <r> <g> <b>`](#setcolor-r-g-b)
-    - [`setcolorhex <hex>`](#setcolorhex-hex)
-    - [`setthickness <thickness>`](#setthickness-thickness)
-  - [Draw/move instructions](#drawmove-instructions)
-    - [`rotate <angle>`](#rotate-angle)
-    - [`forward <distance>`](#forward-distance)
-    - [`backward <distance>`](#backward-distance)
-    - [`left <angle>`](#left-angle)
-    - [`right <angle>`](#right-angle)
-    - [`arc <angle> <radius>`](#arc-angle-radius)
-  - [Blocks](#blocks)
-    - [`repeat <times>`](#repeat-times)
-    - [`block <name>`](#block-name)
-    - [`call <name>`](#call-name)
+    - [Basic instructions](#basic-instructions)
+        - [`say [args...]`](#say-args)
+        - [`pause`](#pause)
+        - [`exit <status>`](#exit-status)
+    - [Setters instructions](#setters-instructions)
+        - [`setdefault`](#setdefault)
+        - [`setpen <on/off>`](#setpen-onoff)
+        - [`setx <x>`](#setx-x)
+        - [`sety <y>`](#sety-y)
+        - [`setposition <x> <y>`](#setposition-x-y)
+        - [`setorientation <angle>`](#setorientation-angle)
+        - [`setcolor <r> <g> <b>`](#setcolor-r-g-b)
+        - [`setcolorhex <hex>`](#setcolorhex-hex)
+        - [`setthickness <thickness>`](#setthickness-thickness)
+    - [Draw/move instructions](#drawmove-instructions)
+        - [`rotate <angle>`](#rotate-angle)
+        - [`forward <distance>`](#forward-distance)
+        - [`backward <distance>`](#backward-distance)
+        - [`left <angle>`](#left-angle)
+        - [`right <angle>`](#right-angle)
+        - [`arc <angle> <radius>`](#arc-angle-radius)
+    - [Blocks](#blocks)
+        - [`repeat <times>`](#repeat-times)
+        - [`block <name>`](#block-name)
+        - [`call <name>`](#call-name)
+
+## Basic instructions
+
+Those instructions were basically made for minor tests or debugging
+
+### `say [args...]`
+
+`say` instruction will display every arguments as text in the console
+
+**Example:**
+
+```text
+say Hello World
+```
+
+[↑ Back to top](#documentation-turtle-drawing)
+
+### `pause`
+
+(*Broken*)
+
+`pause` instruction will wait for a key pressed in the console to continue the turtle progression
+
+**Example:**
+
+```text
+pause
+```
+
+[↑ Back to top](#documentation-turtle-drawing)
+
+### `exit <status>`
+
+`exit` instruction will close the program and return the specified `status`
+
+**Example:**
+
+```text
+exit 0
+```
+
+[↑ Back to top](#documentation-turtle-drawing)
 
 ## Setters instructions
 
@@ -30,7 +76,6 @@ Those instructions allow the user to define the curser values
 ### `setdefault`
 
 `setdefault` reset all cursor values to default, it means:
-
 - the pen set on "on"
 - the position (0, 0)
 - the orientation 0°
@@ -288,6 +333,7 @@ block square
         forward 100
         rotate 90
 ```
+
 
 [↑ Back to top](#documentation-turtle-drawing)
 

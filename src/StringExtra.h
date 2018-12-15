@@ -5,12 +5,6 @@
 #include <string>
 #include <vector>
 
-/***
- *
- * Custom functions to help with strings
- *
- */
-
 std::string trim(const std::string &s, const char &delimiter = ' ');
 
 std::vector <std::string> explode(const std::string &s, const char &delimiter = ' ');

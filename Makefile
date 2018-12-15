@@ -100,10 +100,3 @@ stringextra: build/StringExtra.o ## Build spike related to StringExtra
 
 functionmap: ## Build spike related to functions in a map
 	$(CXX) $(CXXFLAGS) spikes/functionmap.cpp -o bin/functionmap
-	
-# All
-
-all: clean .depend $(OBJECTS) $(TARGET) stringextra functionmap ## Build all objects, all spikes, and target
-	@echo
-	@echo All: Done.
-	@echo

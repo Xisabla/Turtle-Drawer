@@ -5,6 +5,7 @@
 #include <cctype>
 #include <cmath>
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include <vector>
 
@@ -76,7 +77,6 @@ private:
     float orientation;
     int thickness;
 
-    std::vector<sf::RectangleShape> lines;
     sf::Color color;
     sf::RenderWindow *window;
 };

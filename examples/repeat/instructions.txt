@@ -3,7 +3,11 @@
 #   or equal offset, the repeat block will stop
 
 repeat 5
-    forward 100
-    rotate 90
+    say Hi, I'll be displayed 5 times
+    say Me too
+    repeat 2
+        say Me twice times 5
+    say Me only 5
 
-forward 100
+    say I'm not in the repeat anymore
+say Me neither
